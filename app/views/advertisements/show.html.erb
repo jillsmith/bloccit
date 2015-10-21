@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-8">
         <p><%= @advertisement.copy %></p>
-        <p><%= @advertisement.price %></p>
+        <p><%= number_to_currency(@advertisement.price) %></p>
     </div>
     <div class="col-md-4">
         <%= link_to "Edit", edit_advertisement_path(@advertisement), class: 'btn btn-success' %>

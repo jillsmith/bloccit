@@ -1,17 +1,17 @@
 class AdvertisementsController < ApplicationController
-  def index
+  def index # views/advertisements/index.html.erb - GET /advertisements
     @advertisements = Advertisement.all
   end
 
-  def show
+  def show # views/advertisements/show.html.erb - GET /advertisements/:id
     @advertisement = Advertisement.find(params[:id])
   end
 
-  def new
+  def new# views/advertisements/new.html.erb - GET /advertisements/new
     @advertisement = Advertisement.new
   end
 
-  def create
+  def create # no view - POST /advertisements
     @advertisement = Advertisement.new
     @advertisement.title = params[:advertisement][:title]
     @advertisement.copy = params[:advertisement][:copy]
