@@ -4,18 +4,18 @@ class AdvertisementsController < ApplicationController
   end
 
   def show
-    @advertisements = Advertisement.find(params[:id])
+    @advertisement = Advertisement.find(params[:id])
   end
 
   def new
-    @advertisements = Advertisement.new
+    @advertisement = Advertisement.new
   end
 
   def create
-    @advertisements = Advertisement.new
-    @advertisements.title = params[:advertisement][:title]
-    @advertisements.copy = params[:advertisement][:copy]
-    @advertisements.price = params[:advertisement][:price]
+    @advertisement = Advertisement.new
+    @advertisement.title = params[:advertisement][:title]
+    @advertisement.copy = params[:advertisement][:copy]
+    @advertisement.price = params[:advertisement][:price]
     
     if @advertisement.save
       flash[:notice] = "Advertisement was saved."
