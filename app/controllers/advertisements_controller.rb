@@ -25,4 +25,8 @@ class AdvertisementsController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @advertisement = Advertisement.find(params[:ids])
+  end
 end
