@@ -42,6 +42,23 @@ puts "#{Advertisement.count}"
 puts "Seed finished"
 puts "#{Advertisement.count} advertisements created"
 
+#Seed Question
+true_or_false = [true, false]
+50.times do 
+  Question.create!( 
+      title: RandomData.random_sentence, 
+      body: RandomData.random_paragraph, 
+      resolved: true_or_false.sample)
+end
+
+Questions = Question.all
+
+puts "#{Question.count}"    
+    
+puts "Seed finished"
+puts "#{Question.count} questions created"
+
+
 
 
     
