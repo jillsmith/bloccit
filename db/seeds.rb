@@ -1,14 +1,24 @@
 include RandomData
 
+#Seed Topics
+15.times do
+   Topic.create!(
+     name: RandomData.random_sentence,
+     description: RandomData.random_paragraph
+   )
+end
+topics = Topic.all
+
 #Seed Post
 50.times do
     Post.create!(
+        topic: topics.sample,
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph)
     end
-
 posts = Post.all
 
+#Seed comments
 100.times do
     Comment.create!(
         post: posts.sample,
@@ -21,11 +31,6 @@ puts "#{Post.count}"
 Post.find_or_create_by(title: "A unique title", body: "A unique body")
 
 puts "#{Post.count}"
-    
-puts "Seed finished"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
-
 
 #Seed Advertisement
 50.times do
@@ -34,13 +39,7 @@ puts "#{Comment.count} comments created"
         copy: RandomData.random_paragraph,
         price: RandomData.random_number)
     end
-
-Advertisements = Advertisement.all
-
-puts "#{Advertisement.count}"    
-    
-puts "Seed finished"
-puts "#{Advertisement.count} advertisements created"
+advertisements = Advertisement.all
 
 #Seed Question
 true_or_false = [true, false]
@@ -50,16 +49,17 @@ true_or_false = [true, false]
       body: RandomData.random_paragraph, 
       resolved: true_or_false.sample)
 end
+questions = Question.all
 
-Questions = Question.all
-
-puts "#{Question.count}"    
-    
 puts "Seed finished"
+puts "#{Topic.count} topics created"
+puts "#{Post.count} posts created" 
+puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} advertisements created" 
 puts "#{Question.count} questions created"
 
 
-
+ 
 
     
 
