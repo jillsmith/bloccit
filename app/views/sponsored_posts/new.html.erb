@@ -11,16 +11,16 @@
     </div>
 
     <div class="col-md-8">
-    <%= form_for [@topic, @sponsoredpost] do |f| %>
+    <%= form_for [@topic, @sponsored_post] do |f| %>
  
         <div class="form_group">
             <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control", placeholder: "Enter post title" %>
+            <%= f.text_field :title, class: "form-control", placeholder: "Enter sponsored post title" %>
          </div>
 
          <div class="form_group">
             <%= f.label :body %>
-            <%= f.text_area :body, class: "form_control", placeholder: "Enter post body" %>
+            <%= f.text_area :body, class: "form_control", placeholder: "Enter sponsored post body" %>
          </div>
 
          <div class="form_group">    
