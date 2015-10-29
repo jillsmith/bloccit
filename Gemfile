@@ -56,6 +56,9 @@ end
   
  gem 'bootstrap-sass'
  
+ # Used for encrypting User passwords
+ gem 'bcrypt'
+ 
  group :development do
    gem 'pry-rails'
  end
