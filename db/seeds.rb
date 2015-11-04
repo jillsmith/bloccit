@@ -8,7 +8,8 @@ include RandomData
         password: RandomData.random_sentence
     )
 end
-        
+    
+users = User.all    
 
 #Seed Topics
 15.times do
