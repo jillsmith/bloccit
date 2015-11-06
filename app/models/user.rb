@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
     has_many :posts
     before_save { self.email = email.downcase }
+    before_save { self.role ||= :member }
     before_save :format_name
    
     
@@ -17,6 +18,8 @@ class User < ActiveRecord::Base
         format: { with: EMAIL_REGEX }
     
     has_secure_password
+    
+    enum role: [:member, :admin, :moderator]
     
     def format_name
        if name
