@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   
+  get "welcome/faq" => 'welcome#faq'
+  get "users/:id/edit" => 'users#edit'
+  
   root to: 'welcome#index'
   
 end
