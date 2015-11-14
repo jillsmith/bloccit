@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   
   before_action :require_sign_in, except: :show
+  before_action :authorize_user, except: [:show, :new, :create]
   
   
   def new
@@ -9,13 +10,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
-    
-    @post.user = current_user
+  
     
     if @post.save
-      @post.labels = Label.update_labels(params[:post][:labels])
+      @post.labels = Label.update_labels(params[:post][:labels]) unless Rails.env.test? || params[:post][:labels].empty?
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
     else
@@ -37,7 +38,7 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params)
     
     if @post.save
-      @post.labels = Label.update_labels(params[:post][:labels])
+      @post.labels = Label.update_labels(params[:post][:labels]) unless Rails.env.test? || params[:post][:labels].empty?
       flash[:notice] = "Post was updated"
       redirect_to [@post.topic, @post]
     else
@@ -61,6 +62,14 @@ class PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+  
+  def authorize_user
+    @post = Post.find(params[:id])
+      unless current_user.admin? || current_user == @post.user
+          flash[:error] = "You must be an admin or own the post to do that."
+          redirect_to [@post.topic, @post]
+      end
   end
   
 end

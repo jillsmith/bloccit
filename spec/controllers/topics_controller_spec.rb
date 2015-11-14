@@ -188,17 +188,17 @@ RSpec.describe TopicsController, type: :controller do
     describe "GET new" do
       it "returns http success" do
         get :new
-        expect(response).to have_http_status(:success)
+        expect(response).not_to have_http_status(:success)
       end
 
       it "renders the #new view" do
         get :new
-        expect(response).to render_template :new
+        expect(response).not_to render_template :new
       end
 
       it "initializes @topic" do
         get :new
-        expect(assigns(:topic)).not_to be_nil
+        expect(assigns(:topic)).to be_nil
       end
     end
 

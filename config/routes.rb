@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :labels, only: [:show]
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   post 'users/confirm' => 'users#confirm'
 
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
   
-  resources :users, only: [:new, :create]
 
   get 'about' => 'welcome#about'
   

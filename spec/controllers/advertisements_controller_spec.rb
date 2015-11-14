@@ -3,7 +3,7 @@ include RandomData
 
 RSpec.describe AdvertisementsController, type: :controller do
   
-  let (:my_ad) do
+  let(:my_ad) do
     Advertisement.create(
       title: RandomData.random_sentence,
       copy: RandomData.random_paragraph,
@@ -28,7 +28,7 @@ RSpec.describe AdvertisementsController, type: :controller do
         new_title = RandomData.random_sentence
         new_copy = RandomData.random_paragraph
         new_price = RandomData.random_number
-        put :update, advertisement: {title: new_title, copy: new_copy, price: new_price}
+        put :update, id: my_ad.id, advertisement: {title: new_title, copy: new_copy, price: new_price}
         updated_advertisement = assigns(:advertisement)
         
         expect(updated_advertisement.title).to eq new_title

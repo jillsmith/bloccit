@@ -93,6 +93,9 @@ RSpec.describe User, type: :model do
     end
             
     context "moderator user" do
+      before do
+        user.moderator!
+      end
       it "should return false for #member?" do
         expect(user.member?).to be_falsey
       end

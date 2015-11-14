@@ -40,6 +40,6 @@
    def random_number
      numbers = ('0'..'9').to_a
      numbers.shuffle!
-     numbers[0,rand(3..5)].join
+     numbers[0,rand(3..5)].join.to_i
    end
  end

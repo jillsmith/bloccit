@@ -27,6 +27,23 @@ class AdvertisementsController < ApplicationController
   end
   
   def edit
-    @advertisement = Advertisement.find(params[:ids])
+    @advertisement = Advertisement.find(params[:id])
+  end
+  
+  def update
+    @advertisement = Advertisement.find(params[:id])
+    
+    if @advertisement.update_attributes(ad_params)
+      redirect_to @advertisement, notice: "Ad created"
+    else
+      flash[:error] = "Something went wrong"
+      render :edit
+    end
+  end
+  
+  private
+  
+  def ad_params
+    params.require(:advertisement).permit(:copy, :price, :title)
   end
 end
