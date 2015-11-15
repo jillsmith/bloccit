@@ -22,11 +22,14 @@ topics = Topic.all
 
 #Seed Post
 50.times do
-    Post.create!(
+    post = Post.create!(
         user: users.sample,
         topic: topics.sample,
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph)
+        
+        post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+        rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
     end
 posts = Post.all
 
@@ -97,6 +100,7 @@ puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created" 
 puts "#{Question.count} questions created"
 puts "#{SponsoredPost.count} sponsored posts created" 
+puts "#{Vote.count} votes created"
 
 
  
