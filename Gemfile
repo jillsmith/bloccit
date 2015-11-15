@@ -62,3 +62,5 @@ end
  group :development do
    gem 'pry-rails'
  end
+ 
+ gem 'figaro', '1.0'
