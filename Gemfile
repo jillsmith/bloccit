@@ -52,6 +52,7 @@ end
    gem 'sqlite3'
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
+   gem 'factory_girl_rails', '~> 4.0'
  end
   
  gem 'bootstrap-sass'

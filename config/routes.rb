@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :labels, only: [:show]
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update, :show]
   resources :sessions, only: [:new, :create, :destroy]
   post 'users/confirm' => 'users#confirm'
 
